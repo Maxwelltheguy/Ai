@@ -5,13 +5,14 @@
 
 import hashlib
 import os
+import getpass
 
 def hash_password(password, salt):
     hashed_password = hashlib.sha256((password + salt).encode('utf-8')).hexdigest()
     return hashed_password
 
-# Get user input for password
-password = input("Enter your password: ")
+# Get user input for password without showing characters
+password = getpass.getpass("Enter your password: ")
 
 # Generate a random salt
 salt = os.urandom(16).hex()
@@ -20,6 +21,5 @@ salt = os.urandom(16).hex()
 hashed_password = hash_password(password, salt)
 
 # Print the hashed password and salt
-print(f"Password: {password}")
 print(f"Salt: {salt}")
 print(f"Hashed Password: {hashed_password}")
